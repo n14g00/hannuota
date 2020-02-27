@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>三柱汉诺塔</title>
+<link href="digui.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+function atoc(n)
+{
+	var nbz="";
+		if(n==2)
+		{
+			nbz="1盘从A移到B"+"<br />"+"2盘从A移到C"+"<br />"+"1盘从B移到C"+"<br />";
+			return nbz;
+		}
+		else
+		{
+			nbz=atob(n-1)+n+"盘从A移到C"+"<br />"+btoc(n-1);
+			return nbz;
+		}
+
+}
+
+function atob(m)
+{
+	var mbz="";
+	if(m==2)
+		{
+			mbz="1盘从A移到C"+"<br />"+"2盘从A移到B"+"<br />"+"1盘从C移到B"+"<br />";
+			return mbz;
+		}
+	else
+		{
+			mbz=atoc(m-1)+m+"盘从A移到B"+"<br />"+ctob(m-1);
+			return mbz;
+		}
+
+}
+
+function btoc(j)
+{
+
+	var jbz="";
+
+		if(j==2)
+		{
+			jbz="1盘从B移到A"+"<br />"+"2盘从B移到C"+"<br />"+"1盘从A移到C"+"<br />";
+			return jbz;
+		}
+		else
+		{
+			jbz=btoa(j-1)+j+"盘从B移到C"+"<br />"+atoc(j-1);
+			return jbz;
+		}
+
+}
+function ctob(k)
+{
+
+	var kbz="";
+
+		if(k==2)
+		{
+			kbz="1盘从C移到A"+"<br />"+"2盘从C移到B"+"<br />"+"1盘从A移到B"+"<br />";
+		
+			return kbz;
+		}
+		else
+		{
+			kbz=ctoa(k-1)+k+"盘从C移到B"+"<br />"+atob(k-1);
+			return kbz;
+		}
+}
+
+function btoa(l)
+{
+	
+	var lbz="";
+
+		if(l==2)
+		{
+			lbz="1盘从B移到C"+"<br />"+"2盘从B移到A"+"<br />"+"1盘从C移到A"+"<br />";
+	
+			return lbz;
+		}
+		else
+		{
+			lbz=btoc(l-1)+l+"盘从B移到A"+"<br />"+ctoa(l-1);
+			return lbz;
+			
+		}
+
+}
+function ctoa(h)
+{
+	
+	var hbz="";
+
+		if(h==2)
+		{
+			hbz="1盘从C移到B"+"<br />"+"2盘从C移到A"+"<br />"+"1盘从B移到A"+"<br />";
+
+			return hbz;
+		}
+		else
+		{
+			hbz=ctob(h-1)+h+"盘从C移到A"+"<br />"+btoa(h-1);
+			return hbz;
+		}
+}
+function hannuota(fangxiang)
+{
+	var num=document.getElementById("panzishu").value;
+	var bz="";
+	if(num>1)
+	{
+		if(fangxiang==1)
+		{
+		bz=atob(num);
+		}
+		else if(fangxiang==2)
+		{
+		bz=atoc(num);
+		}
+		else if(fangxiang==3)
+		{
+		bz=btoc(num);
+		}
+		else if(fangxiang==4)
+		{
+		bz=btoa(num);
+		}
+		else if(fangxiang==5)
+		{
+		bz=ctob(num);
+		}
+		else
+		{
+		bz=ctoa(num);
+		}
+		document.getElementById("buzhou").innerHTML=num+"个盘子共需要移动"+(Math.pow(2,num)-1)+"步：<br />============================"+"<br />"+bz;
+	}
+	else if(num==1)
+	{
+		if(fangxiang==1)
+		{
+		bz="1盘从A移到B";
+		}
+		else if(fangxiang==2)
+		{
+		bz="1盘从A移到C";
+		}
+		else if(fangxiang==3)
+		{
+		bz="1盘从B移到C";
+		}
+		else if(fangxiang==4)
+		{
+		bz="1盘从B移到A";
+		}
+		else if(fangxiang==5)
+		{
+		bz="1盘从C移到B";
+		}
+		else
+		{
+		bz="1盘从C移到A";
+		}
+		document.getElementById("buzhou").innerHTML="就1步，你肯定是逗我<br />============================"+"<br />"+bz;
+	}
+	else
+	{
+	document.getElementById("buzhou").innerHTML="滚犊子！";
+	}
+}
+
+
+</script>
+
+
+</head>
+
+<body>
+<div>
+输入盘子个数<input  id="panzishu"  /> <br />	<button onclick="hannuota(1)">从A柱移到B柱</button>&nbsp;&nbsp;<button onclick="hannuota(2)">从A柱移到C柱</button>&nbsp;&nbsp;<br /><button onclick="hannuota(3)">从B柱移到C柱</button>&nbsp;&nbsp;<button onclick="hannuota(4)">从B柱移到A柱</button>&nbsp;&nbsp;<br /><button onclick="hannuota(5)">从C柱移到B柱</button>&nbsp;&nbsp;<button onclick="hannuota(6)">从C柱移到A柱</button>
+<div id="buzhou">
+
+
+</div>
+
+</div>
+</body>
+</html>
